@@ -97,7 +97,7 @@ def consultar_registros():
     else:
         print("Não existem registros em sistema")
 
-def sacar(cadastro_de_clientes, cpf, numero_conta, numero_saques, saque):
+def sacar(*, cadastro_de_clientes, cpf, numero_conta, numero_saques, saque):
     print('SAQUE')
     cpf = input('Informe o CPF do titular (somente números): ')
     numero_conta = int(input('Informe o número da conta: '))
@@ -134,7 +134,7 @@ def sacar(cadastro_de_clientes, cpf, numero_conta, numero_saques, saque):
     else:
         print('Cliente não encontrado ou sem conta bancária')
 
-def depositar(cadastro_de_clientes, cpf, numero_conta, deposito):
+def depositar(cadastro_de_clientes, cpf, numero_conta, deposito, /):
     print('DEPÓSITO')
     cpf = input('Informe o CPF do titular (somente números): ')
     numero_conta = int(input('Informe o número da conta: '))
@@ -163,7 +163,7 @@ def depositar(cadastro_de_clientes, cpf, numero_conta, deposito):
     else:
         print("Cliente não encontrado ou sem conta bancária") 
 
-def exibir_extrato(cpf, numero_conta):
+def exibir_extrato(cpf, /, *, numero_conta):
     print('EXTRATO BANCÁRIO')
 
     cpf = input('Informe o CPF (somente números): ')
@@ -232,13 +232,13 @@ while True:
         consultar_registros()
 
     elif opcao == "5": # Operação de saque finalizada
-        sacar(cadastro_de_clientes, cpf, numero_conta, numero_saques, saque)
+        sacar(cadastro_de_clientes=cadastro_de_clientes, cpf=cpf, numero_conta=numero_conta, numero_saques=numero_saques, saque=saque)
 
     elif opcao == "6": # Operação de depósito finlizada
         depositar(cadastro_de_clientes, cpf, numero_conta, deposito)
 
     elif opcao == "7": # Extrato finalizado
-        exibir_extrato(cpf, numero_conta)
+        exibir_extrato(cpf, numero_conta=numero_conta)
 
     elif opcao == "0": # Sair finalizado
         print('Muito obrigado pela preferência. Tenha um bom dia.')
